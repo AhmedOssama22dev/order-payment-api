@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'user_id',
         'status',
-        'total_price',
     ];
+
+    protected $guarded = ['total_price', 'user_id'];
 
     public function user()
     {
@@ -21,5 +21,17 @@ class Order extends Model
     {
         return $this->hasOne(Payment::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updating(function ($order) {
+            if ($order->isDirty('user_id')) {
+                throw new \Exception("User ID cannot be updated.");
+            }
+        });
+    }
+
 }
 
