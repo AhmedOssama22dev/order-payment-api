@@ -1,9 +1,14 @@
-
 # Extendable Order and Payment Management API
 
-# Setup instructions
-# How to extend payment gateway?
-# API docs [POSTMAN]
-# System design elements
-## ERD
-## Architecture Diagram
+## Setup Instructions
+
+## How to Extend Payment Gateway?
+
+## API Docs [POSTMAN]
+
+## System Design Elements
+
+### ERD  
+![ERD](Documents/order-payment-erd.drawio.png)  
+
+### Architecture Diagram
