@@ -1,7 +1,124 @@
 # Extendable Order and Payment Management API
 
-## Setup Instructions
-## Prerequisites
+## Laravel Project Setup Guide
+Follow these instructions to get the project up and running.
+
+---
+
+## Step 1: Clone the Repository
+
+1. Open your terminal or command prompt.
+2. Navigate to the directory where you want to clone the project.
+3. Run the following command to clone the repository:
+
+   ```bash
+   git clone https://github.com/AhmedOssama22dev/order-payment-api
+   ```
+
+4. Navigate into the project directory:
+
+   ```bash
+   cd order-payment-api
+   ```
+
+---
+
+## Step 2: Install PHP Dependencies
+
+1. Install Composer dependencies by running:
+
+   ```bash
+   composer install
+   ```
+
+   This will download all the required PHP packages listed in `composer.json`.
+
+---
+
+## Step 3: Set Up Environment Variables
+
+1. Copy the `.env.example` file to `.env`:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Open the `.env` file in a text editor and update the following values:
+
+   - **Database Configuration**:
+     ```env
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=your_database_name
+     DB_USERNAME=your_database_username
+     DB_PASSWORD=your_database_password
+     ```
+
+   - **App Configuration**:
+     ```env
+     APP_NAME=YourAppName
+     APP_ENV=local
+     APP_KEY=
+     APP_DEBUG=true
+     APP_URL=http://localhost
+     ```
+
+3. Generate the application key:
+
+   ```bash
+   php artisan key:generate
+   ```
+
+---
+
+## Step 3: Set Up the Database
+
+1. Create a new database using your preferred database management tool (e.g., phpMyAdmin, MySQL CLI, etc.).
+2. Run migrations to create the necessary tables:
+
+   ```bash
+   php artisan migrate
+   ```
+
+3. (Optional) Seed the database with dummy data:
+
+   ```bash
+   php artisan db:seed
+   ```
+
+---
+
+## Step 4: Run the Application
+
+1. Start the Laravel development server:
+
+   ```bash
+   php artisan serve
+   ```
+
+2. Open your browser and navigate to:
+
+   ```
+   http://localhost:8000
+   ```
+
+   You should see the Laravel welcome page or your application's homepage.
+
+---
+
+
+## Step 5: Test the Application
+
+1. Run the Laravel test suite to ensure everything is working correctly:
+
+   ```bash
+   php artisan test
+   ```
+
+2. Manually test the application by making API request from the given postman collection
+
+---
 
 
 
