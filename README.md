@@ -14,7 +14,7 @@ To generate a new payment gateway class and update the configuration file, run t
 ```bash
 php artisan make:payment-gateway <GatewayName>
 ```
-Replace `<GatewayName>` with the actual payment gateway name (e.g., `Stripe`, `Razorpay`).
+Replace `<GatewayName>` with the actual payment gateway name (e.g., `Stripe`, `PayMob`).
 
 ### 2. Implement the Payment Gateway Class
 After running the command, a new class will be created inside `app/Services/PaymentManagement/PaymentGateways/`.
@@ -38,8 +38,8 @@ After running the command, a new class will be created inside `app/Services/Paym
            // Implement API call to <GatewayName> here
 
            return new PaymentResponseDTO([
-               'payment_id' => uniqid('<gateway_name>', true),
-               'status' => 'pending',
+               'payment_id' => $response['payment_id'],
+               'status' => $response['status'],
                'payment_method' => '<gateway_name>',
            ]);
        }
@@ -47,7 +47,7 @@ After running the command, a new class will be created inside `app/Services/Paym
    ```
 
 ### 3. Configure the Payment Gateway
-The command will automatically update `config/payment.php` with the new gateway entry. Verify the new entry in:
+The command will automatically update `config/payment.php` with the new gateway entry.Feel free to modify these names if required but you need some changes in the gatewayInterface implementation. Verify the new entry in:
 ```php
 return [
     '<gateway_name>' => [
