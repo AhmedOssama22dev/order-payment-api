@@ -10,10 +10,15 @@ use App\Enums\PaymentGatewayEnum;
 
 class PaymentGatewayFactory
 {
+    protected array $gateways;
+
+    public function __construct(array $gateways = [])
+    {
+        $this->gateways = $gateways;
+    }
     public function createGateway(string $gateway): PaymentGatewayInterface
     {
-        $gateways = PaymentGatewayEnum::all();
-
+        $gateways = $this->gateways ?: PaymentGatewayEnum::all();
         if (!isset($gateways[$gateway])) {
             throw new InvalidArgumentException("Unsupported payment gateway: $gateway");
         }

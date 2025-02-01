@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Enums\PaymentGatewayEnum;
 use Illuminate\Support\ServiceProvider;
 use App\Services\PaymentManagement\PaymentService;
 use App\Services\PaymentManagement\PaymentGatewayFactory;
@@ -19,12 +20,18 @@ class AppServiceProvider extends ServiceProvider
             OrderRepositoryInterface::class,
             \App\Repositories\OrderManagement\OrderRepository::class
         );
+
         $this->app->bind(
             PaymentRepositoryInterface::class,
             \App\Repositories\PaymentManagement\PaymentRepository::class
         );
 
-        // PaymentService binding
+        // Bind PaymentGatewayFactory with dynamic gateway list
+        $this->app->singleton(PaymentGatewayFactory::class, function ($app) {
+            return new PaymentGatewayFactory(PaymentGatewayEnum::all());
+        });
+
+        // Bind PaymentService
         $this->app->singleton(PaymentService::class, function ($app) {
             return new PaymentService(
                 $app->make(PaymentRepositoryInterface::class),
