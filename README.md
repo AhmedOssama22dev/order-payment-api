@@ -33,7 +33,7 @@ After running the command, a new class will be created inside `app/Services/Paym
 
    class <GatewayName>Payment implements PaymentGatewayInterface
    {
-       public function processPayment(PaymentRequestDTO $request): PaymentResponseDTO
+       public function processPayment($amount): PaymentResponseDTO
        {
            // Implement API call to <GatewayName> here
 
@@ -91,6 +91,7 @@ Pass only the `payment_method` name and `order_id` in the request body of the pr
 - Ensure your new gateway class follows the `PaymentGatewayInterface` structure.
 - If you modify `config/payment.php` manually, always run `php artisan config:cache`.
 - The `PaymentService` will automatically detect the new gateway based on the config.
+- Check the `PaymentGatewayEnum.php` to make sure the new one was added.
 
 ---
 
