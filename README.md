@@ -51,9 +51,9 @@ The command will automatically update `config/payment.php` with the new gateway 
 ```php
 return [
     '<gateway_name>' => [
-        'client_id' => env('<GATEWAY_NAME>_CLIENT_ID'),
-        'client_secret' => env('<GATEWAY_NAME>_CLIENT_SECRET'),
-        'payment_url' => env('<GATEWAY_NAME>_PAYMENT_URL'),
+        'client_id' => env('<GATEWAY_NAME>_CLIENT_ID', ''),
+        'client_secret' => env('<GATEWAY_NAME>_CLIENT_SECRET',''),
+        'payment_url' => env('<GATEWAY_NAME>_PAYMENT_URL', ''),
     ],
 ];
 ```
@@ -74,6 +74,7 @@ php artisan config:cache
 
 ### 5. Use the Payment Gateway
 The new payment gateway is now available inside `PaymentService`. 
+You can also check the PaymentGatewayEnum.php to make sure the new one was added.
 
 Pass only the `payment_method` name and `order_id` in the request body of the process payment API:
 
