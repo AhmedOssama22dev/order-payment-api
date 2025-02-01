@@ -100,7 +100,7 @@ Pass only the `payment_method` name and `order_id` in the request body of the pr
 ---
 
 ## API Docs [POSTMAN]
-![Postman colelction](Documents/Order%20and%20Payment%20Management%20API.postman_collection.json)
+[Postman colelction](Documents/Order%20and%20Payment%20Management%20API.postman_collection.json)
 ## System Design Elements
 
 ### ERD  

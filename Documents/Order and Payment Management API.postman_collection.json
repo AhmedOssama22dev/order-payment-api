@@ -1,0 +1,1642 @@
+{
+	"info": {
+		"_postman_id": "a726e227-8120-4938-afcf-262cea086a34",
+		"name": "Order and Payment Management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17318038"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ahmedossama@gmail.com\",\r\n    \"password\": \"12345678_\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/api/v1/login"
+					},
+					"response": [
+						{
+							"name": "Invalid Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/login"
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 13:33:09 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 13:33:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Invalid login details\"\n}"
+						},
+						{
+							"name": "Successful Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"ahmedossama@gmail.com\",\r\n    \"password\": \"12345678_\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 14:01:14 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 14:01:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"2|6jaagmo78tqiLuCAtneHooESihSBBZZyUtJGsVO58046f91e\",\n    \"user\": {\n        \"id\": 1,\n        \"name\": \"Ahmed\",\n        \"email\": \"ahmedossama@gmail.com\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2025-01-30T13:59:30.000000Z\",\n        \"updated_at\": \"2025-01-30T13:59:30.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Ahmed\",\r\n    \"email\": \"ahmedossama@gmail.com\",\r\n    \"password\":\"12345678_\",\r\n    \"password_confirmation\":\"12345678_\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/api/v1/register"
+					},
+					"response": [
+						{
+							"name": "Successful registration",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Ahmed\",\r\n    \"email\": \"ahmedossama@gmail.com\",\r\n    \"password\":\"12345678_\",\r\n    \"password_confirmation\":\"12345678_\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/register"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 13:59:30 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 13:59:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"1|F31OfZZKKvofe4SndxFcSejqMu4BVD6Lt3rk3idDea959e74\",\n    \"user\": {\n        \"name\": \"Ahmed\",\n        \"email\": \"ahmedossama@gmail.com\",\n        \"updated_at\": \"2025-01-30T13:59:30.000000Z\",\n        \"created_at\": \"2025-01-30T13:59:30.000000Z\",\n        \"id\": 1\n    }\n}"
+						},
+						{
+							"name": "Invalid Registeration",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Ahmed\",\r\n    \"email\": \"ahmedossama@gmail.com\",\r\n    \"password\":\"12345678_\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/register"
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 13:36:46 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 13:36:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Invalid registration details\"\n}"
+						},
+						{
+							"name": "General error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Ahmed\",\r\n    \"email\": \"ahmedossama@gmail.com\",\r\n    \"password\":\"12345678_\",\r\n    \"password_confirmation\":\"12345678_\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/register"
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 13:58:10 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 13:58:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Registration failed\",\n    \"error\": \"An error occurred while trying to register the user\"\n}"
+						},
+						{
+							"name": "Email and Pass validation errors",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Ahmed\",\r\n    \"email\": \"ahmedossama@gmail.com\",\r\n    \"password\":\"123\",\r\n    \"password_confirmation\":\"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/register"
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 14:00:07 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 14:00:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation failed\",\n    \"errors\": {\n        \"email\": [\n            \"This email is already registered.\"\n        ],\n        \"password\": [\n            \"The password must be at least 8 characters long.\"\n        ]\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "List Orders",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{userToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}/api/v1/orders?status=pending&limit=50&offset=1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "pending"
+										},
+										{
+											"key": "limit",
+											"value": "50"
+										},
+										{
+											"key": "offset",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Invalid status Filter",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{BASE_URL}}/api/v1/orders?status={pending, confirmed, cancelled}",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"orders"
+											],
+											"query": [
+												{
+													"key": "status",
+													"value": "{pending, confirmed, cancelled}"
+												},
+												{
+													"key": "limit",
+													"value": "50",
+													"disabled": true
+												},
+												{
+													"key": "offset",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 15:50:18 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 15:50:18 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"error\",\n    \"message\": \"Failed to fetch orders.\",\n    \"data\": \"Invalid status provided.\"\n}"
+								},
+								{
+									"name": "List orders without status filter",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{BASE_URL}}/api/v1/orders?limit=50&offset=0",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"orders"
+											],
+											"query": [
+												{
+													"key": "status",
+													"value": "pending",
+													"disabled": true
+												},
+												{
+													"key": "limit",
+													"value": "50"
+												},
+												{
+													"key": "offset",
+													"value": "0"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 16:10:42 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 16:10:42 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"message\": \"Orders fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"user_id\": 1,\n            \"status\": \"pending\",\n            \"total_price\": \"310.50\",\n            \"created_at\": \"2025-01-30T15:53:18.000000Z\",\n            \"updated_at\": \"2025-01-30T15:53:18.000000Z\",\n            \"deleted_at\": null\n        }\n    ]\n}"
+								},
+								{
+									"name": "List Orders with status filter",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{BASE_URL}}/api/v1/orders?status=pending&limit=50&offset=0",
+											"host": [
+												"{{BASE_URL}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"orders"
+											],
+											"query": [
+												{
+													"key": "status",
+													"value": "pending"
+												},
+												{
+													"key": "limit",
+													"value": "50"
+												},
+												{
+													"key": "offset",
+													"value": "0"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 16:11:03 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 16:11:03 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"message\": \"Orders fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"user_id\": 1,\n            \"status\": \"pending\",\n            \"total_price\": \"310.50\",\n            \"created_at\": \"2025-01-30T15:53:18.000000Z\",\n            \"updated_at\": \"2025-01-30T15:53:18.000000Z\",\n            \"deleted_at\": null\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Show Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{userToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BASE_URL}}/api/v1/orders/{id}"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{userToken}}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\":\"1\",\r\n    \"products\" : [\r\n        {\r\n            \"name\":\"Product 1\",\r\n            \"quantity\":\"1\",\r\n            \"price\": \"10.5\"\r\n        },\r\n        {\r\n            \"name\":\"Product 2\",\r\n            \"quantity\":\"3\",\r\n            \"price\": \"100\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/orders"
+							},
+							"response": [
+								{
+									"name": "Success order creation",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"user_id\":\"1\",\r\n    \"products\" : [\r\n        {\r\n            \"name\":\"Product 1\",\r\n            \"quantity\":\"1\",\r\n            \"price\": \"10.5\"\r\n        },\r\n        {\r\n            \"name\":\"Product 2\",\r\n            \"quantity\":\"3\",\r\n            \"price\": \"100\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BASE_URL}}/api/v1/orders"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 15:53:18 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 15:53:18 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"message\": \"Order created successfully!\",\n    \"data\": 201\n}"
+								},
+								{
+									"name": "Unauthenticated",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"user_id\":\"1\",\r\n    \"products\" : [\r\n        {\r\n            \"name\":\"Product 1\",\r\n            \"quantity\":\"1\",\r\n            \"price\": \"10.5\"\r\n        },\r\n        {\r\n            \"name\":\"Product 2\",\r\n            \"quantity\":\"3\",\r\n            \"price\": \"100\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BASE_URL}}/api/v1/orders"
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 16:08:13 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 16:08:13 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+								},
+								{
+									"name": "Validation Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"user_id\":\"1\",\r\n    \"products\" : [\r\n        {\r\n            \"name\":\"Product 1\",\r\n            \"quantity\":\"1\",\r\n        },\r\n        {\r\n            \"name\":\"Product 2\",\r\n            \"quantity\":\"3\",\r\n            \"price\": \"100\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BASE_URL}}/api/v1/orders"
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 16:09:15 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 16:09:15 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"error\",\n    \"message\": \"Failed to create order. Please try again.\",\n    \"data\": \"Product list cannot be empty.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{userToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\":\"confirmed\"\r\n    // total_price and user_id are guarded\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/orders/3"
+							},
+							"response": [
+								{
+									"name": "Success order status update",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"status\":\"confirmed\"\r\n    // total_price and user_id are guarded\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BASE_URL}}/api/v1/orders/3"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 21:58:41 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 21:58:41 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"message\": \"Order updated successfully!\",\n    \"data\": {\n        \"id\": 3,\n        \"user_id\": 1,\n        \"status\": \"confirmed\",\n        \"total_price\": \"55.50\",\n        \"created_at\": \"2025-01-30T21:57:09.000000Z\",\n        \"updated_at\": \"2025-01-30T21:57:36.000000Z\",\n        \"deleted_at\": null\n    }\n}"
+								},
+								{
+									"name": "Order not found",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"status\":\"confirmed\"\r\n    // total_price and user_id are guarded\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BASE_URL}}/api/v1/orders/10"
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 21:59:07 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 21:59:07 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"error\",\n    \"message\": \"Failed to update order.\",\n    \"data\": \"Order with ID 10 not found.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{userToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "{{BASE_URL}}/api/v1/orders/{id}"
+							},
+							"response": [
+								{
+									"name": "Successfully Delete Order",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": "{{BASE_URL}}/api/v1/orders/3"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 22:03:58 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 22:03:58 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"message\": \"Order deleted successfully!\",\n    \"data\": 204\n}"
+								}
+							]
+						}
+					],
+					"description": "- **Create Order**: Accept user details, purchased items (product name, quantity, price), and calculate them total.\n    \n- **Update Order**: Modify existing order details.\n    \n- **Delete Order**: Delete an order (only if no payments are associated).\n    \n- **View Orders**: Retrieve all orders or filter by status (pending, confirmed, cancelled)."
+				}
+			],
+			"description": "Order management APIs"
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Process payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"payment_method\":\"paypal\",\r\n    \"order_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BASE_URL}}/api/v1/payments"
+					},
+					"response": [
+						{
+							"name": "Order doesn't exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"payment_method\":\"stripe\",\r\n    \"order_id\": \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/payments"
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jan 2025 14:06:34 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jan 2025 14:06:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The selected order does not exist.\",\n    \"errors\": {\n        \"order_id\": [\n            \"The selected order does not exist.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Non supported payment method",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"payment_method\":\"stripe\",\r\n    \"order_id\": \"4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/payments"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jan 2025 14:07:32 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jan 2025 14:07:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Failed to process payment.\",\n    \"data\": \"Payment method not supported.\"\n}"
+						},
+						{
+							"name": "Non confirmed order fail to be paid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"payment_method\":\"paypal\",\r\n    \"order_id\": \"4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/payments"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jan 2025 14:08:02 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jan 2025 14:08:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Failed to process payment.\",\n    \"data\": \"Order not yet confirmed.\"\n}"
+						},
+						{
+							"name": "Success paypal payment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"payment_method\":\"paypal\",\r\n    \"order_id\": \"4\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/payments"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jan 2025 14:17:00 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jan 2025 14:17:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Payment processed successfully\",\n    \"data\": {\n        \"payment_id\": \"paypal679cdb5ccea080.86983357\",\n        \"status\": \"paid\",\n        \"payment_method\": \"paypal\"\n    }\n}"
+						},
+						{
+							"name": "Payment already exists for this order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"payment_method\":\"credit-card\",\r\n    \"order_id\": \"6\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/payments"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 01 Feb 2025 10:57:19 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 01 Feb 2025 10:57:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Payment processed successfully\",\n    \"data\": {\n        \"payment_id\": \"paypal679dfd124f24c4.99900668\",\n        \"status\": \"paid\",\n        \"payment_method\": \"paypal\",\n        \"note\": \"Payment already exists for this order.\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "List user Payments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/v1/payments?limit=&offset=",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"payments"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": ""
+								},
+								{
+									"key": "offset",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List payments made by auth user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/api/v1/payments?limit=&offset=&status=paid",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"payments"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": ""
+										},
+										{
+											"key": "offset",
+											"value": ""
+										},
+										{
+											"key": "status",
+											"value": "paid"
+										},
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jan 2025 14:43:31 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jan 2025 14:43:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Payments fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 12,\n            \"order_id\": 4,\n            \"payment_method\": \"paypal\",\n            \"payment_id\": \"paypal679cde6e0bca57.05483810\",\n            \"payment_status\": \"paid\",\n            \"payment_method_id\": null,\n            \"created_at\": \"2025-01-31T14:30:06.000000Z\",\n            \"updated_at\": \"2025-01-31T14:30:06.000000Z\",\n            \"deleted_at\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Show order payment details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{userToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/v1/payments?order_id={order_id}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"payments"
+							],
+							"query": [
+								{
+									"key": "order_id",
+									"value": "{order_id}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success show certain order payments",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/api/v1/payments?order_id=4",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"payments"
+									],
+									"query": [
+										{
+											"key": "order_id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jan 2025 14:43:07 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 31 Jan 2025 14:43:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Payments fetched successfully\",\n    \"data\": [\n        {\n            \"id\": 11,\n            \"order_id\": 4,\n            \"payment_method\": \"paypal\",\n            \"payment_id\": null,\n            \"payment_status\": \"failed\",\n            \"payment_method_id\": null,\n            \"created_at\": \"2025-01-31T14:24:20.000000Z\",\n            \"updated_at\": \"2025-01-31T14:24:20.000000Z\",\n            \"deleted_at\": null\n        },\n        {\n            \"id\": 12,\n            \"order_id\": 4,\n            \"payment_method\": \"paypal\",\n            \"payment_id\": \"paypal679cde6e0bca57.05483810\",\n            \"payment_status\": \"paid\",\n            \"payment_method_id\": null,\n            \"created_at\": \"2025-01-31T14:30:06.000000Z\",\n            \"updated_at\": \"2025-01-31T14:30:06.000000Z\",\n            \"deleted_at\": null\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
