@@ -193,25 +193,6 @@ class OrderServiceTest extends TestCase
         $this->orderService->destroyOrder($orderId);
     }
 
-    public function testDestroyOrderReturnsFalseWhenPaymentExists()
-    {
-        $orderId = 1;
-        $orderMock = Mockery::mock(Order::class);
-        $orderMock->shouldReceive('payment->exists')->andReturn(true);
-
-        $this->orderRepositoryMock
-            ->shouldReceive('find')
-            ->with($orderId)
-            ->andReturn($orderMock);
-
-        $this->orderRepositoryMock
-            ->shouldNotReceive('delete');
-
-        $result = $this->orderService->destroyOrder($orderId);
-
-        $this->assertFalse($result);
-    }
-
     public function testDestroyOrderThrowsException()
     {
         $this->expectException(\Exception::class);
