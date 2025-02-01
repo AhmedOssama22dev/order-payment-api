@@ -98,7 +98,7 @@ Pass only the `payment_method` name and `order_id` in the request body of the pr
 ## System Design Elements
 
 ### ERD  
-![ERD](Documents/order-payment-erd.drawio.png)  
+![ERD](Documents/order-payment-erd.drawio.svg)  
 
 ### Architecture Diagram
 ![Architecture](Documents/order-payment-arch.drawio.svg)
