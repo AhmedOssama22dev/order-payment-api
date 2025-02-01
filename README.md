@@ -86,8 +86,6 @@ Pass only the `payment_method` name and `order_id` in the request body of the pr
 ```
 
 
-```
-
 ### Notes
 - Ensure your new gateway class follows the `PaymentGatewayInterface` structure.
 - If you modify `config/payment.php` manually, always run `php artisan config:cache`.
@@ -103,3 +101,4 @@ Pass only the `payment_method` name and `order_id` in the request body of the pr
 ![ERD](Documents/order-payment-erd.drawio.png)  
 
 ### Architecture Diagram
+![Architecture](Documents/order-payment-arch.drawio.svg)
