@@ -31,7 +31,10 @@ class PaymentRepository implements PaymentRepositoryInterface
             $query->where('order_id', $filters['order_id']);
         }
 
-        return $query->get();
+        $limit = $filters['limit'] ?? 10;
+        $offset = $filters['offset'] ?? 0;
+
+        return $query->skip($offset)->take($limit)->get();
     }
 
     public function checkPaidOrder($orderId): Collection 
