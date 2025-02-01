@@ -11,6 +11,8 @@ class PayPalPayment implements PaymentGatewayInterface
     protected $paypalConfig;
     protected $apiKey;
     protected $apiSecret;
+    protected $paymentUrl;
+    protected $httpClient;
 
     public function __construct()
     {

@@ -10,10 +10,7 @@ use App\Repositories\PaymentManagement\PaymentRepository;
 
 class PaymentService
 {
-    protected array $gateways = [
-        'paypal' => \App\Services\PaymentManagement\PaymentGateways\PayPalPayment::class,
-        'credit_card' => \App\Services\PaymentManagement\PaymentGateways\CreditCardPayment::class,
-    ];
+    protected array $gateways = [];
 
     protected PaymentRepository $paymentRepository;
     protected OrderRepository $orderRepository;
@@ -22,6 +19,8 @@ class PaymentService
     {
         $this->paymentRepository = $paymentRepository;
         $this->orderRepository = $orderRepository;
+        $this->loadGateways();
+
     }
 
     public function process(PaymentRequestDTO $paymentDTO): PaymentResponseDTO
@@ -29,30 +28,30 @@ class PaymentService
         if (!isset($this->gateways[$paymentDTO->payment_method])) {
             throw new Exception("Payment method not supported.");
         }
-        
+
         $order = $this->orderRepository->find($paymentDTO->orderId);
-        if($order->status !== 'confirmed') {
+        if ($order->status !== 'confirmed') {
             throw new Exception("Order not yet confirmed.");
         }
 
         // if there is a payment with the same order_id and status is not failed, return the payment
         $existingPayment = $this->paymentRepository->checkPaidOrder($paymentDTO->orderId)->first();
-        
-        if($existingPayment) {
+
+        if ($existingPayment) {
             return new PaymentResponseDTO([
                 'payment_id' => $existingPayment->payment_id,
                 'status' => $existingPayment->payment_status,
                 'payment_method' => $existingPayment->payment_method
             ]);
         }
-        
+
         $payment = $this->paymentRepository->createPayment([
             'order_id' => $paymentDTO->orderId,
             'payment_method' => $paymentDTO->payment_method,
             'status' => 'pending'
         ]);
-        
-        if(!$payment) {
+
+        if (!$payment) {
             throw new Exception("Failed to create payment.");
         }
 
@@ -63,12 +62,33 @@ class PaymentService
         return $response;
     }
 
-    public function getPaymentsWithFilters($filters) 
+    public function getPaymentsWithFilters($filters)
     {
         if (isset($filters['status']) && !in_array($filters['status'], ['pending', 'paid', 'failed'])) {
             throw new \InvalidArgumentException('Invalid status provided.');
         }
-        
+
         return $this->paymentRepository->getWithFilters($filters);
+    }
+
+    protected function loadGateways()
+    {
+        $configuredGateways = config('payment');
+
+        foreach ($configuredGateways as $key => $gateway) {
+            $gatewayClass = "\\App\\Services\\PaymentManagement\\PaymentGateways\\" . ucfirst($key) . "Payment";
+
+            if (class_exists($gatewayClass)) {
+                $this->gateways[$key] = $gatewayClass;
+            }
+        }
+    }
+
+    /**
+     * Get the payment gateway class for a given type
+     */
+    public function getGateway(string $gateway)
+    {
+        return $this->gateways[$gateway] ?? null;
     }
 }

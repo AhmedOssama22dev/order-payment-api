@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Services\PaymentManagement\PaymentGateways;
+
+use App\DTOs\PaymentManagement\PaymentRequestDTO;
+use App\DTOs\PaymentManagement\PaymentResponseDTO;
+use App\Contracts\PaymentManagement\PaymentGatewayInterface;
+use GuzzleHttp\Client;
+
+class {{gatewayName}}Payment implements PaymentGatewayInterface
+{
+    protected Client $httpClient;
+    protected string $apiKey;
+    protected string $apiSecret;
+    protected string $paymentUrl;
+
+    public function __construct()
+    {
+        $this->httpClient = new Client();
+        $config = config('payment.{{gatewayName | strtolower}}');
+
+        $this->apiKey = $config['client_id'];
+        $this->apiSecret = $config['client_secret'];
+        $this->paymentUrl = $config['payment_url'];
+    }
+
+    public function processPayment(): PaymentResponseDTO
+    {
+        // $response = API call to the payment gateway
+        // post request to paypal api
+        // This is an example of how the request can be made to the payment gateway, feel free to change
+        // but ensure the response is mapped to the PaymentResponseDTO
+        
+        // $response = $this->httpClient->post($this->paymentUrl, [
+        //     'headers' => [
+        //         'Authorization' => 'Bearer ' . self::getAPIToken(),
+        //         'Content-Type' => 'application/json',
+        //         'API-Key' => $this->apiKey,
+        //         'API-Secret' => $this->apiSecret,
+        //     ],
+        // ]);
+
+        // $status = $this->mapPaymentStatus(strtolower($response['status'])); // map the status to the standard status
+        
+        // return new PaymentResponseDTO([
+        //     'payment_id' => $response['payment_id'],
+        //     'status' => $response['status'],
+        //     'payment_method' => '{{gatewayName}}',
+        // ]);
+    }
+
+    protected function mapPaymentStatus($status)
+    {
+        // Map the payment status from the gateway to our system
+    }
+}
+
