@@ -1076,6 +1076,53 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"status\": \"success\",\n    \"message\": \"Order deleted successfully!\",\n    \"data\": 204\n}"
+								},
+								{
+									"name": "Fail to delete order having payment",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": "{{BASE_URL}}/api/v1/orders/7"
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 01 Feb 2025 16:35:27 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 01 Feb 2025 16:35:27 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"error\",\n    \"message\": \"Failed to delete order.\",\n    \"data\": \"Cannot delete order with payment.\"\n}"
 								}
 							]
 						}

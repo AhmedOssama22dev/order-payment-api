@@ -93,11 +93,11 @@ class OrderService
             $order = $this->orderRepository->find($id);
 
             if (!$order) {
-                return false;
+                throw new \Exception('Order not found.');
             }
 
             if ($order->payment()->exists()) {
-                return false;
+                throw new \Exception('Cannot delete order with payment.');
             }
 
             $isDeleted = $this->orderRepository->delete($id);
