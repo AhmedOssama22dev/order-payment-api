@@ -31,8 +31,8 @@ class PaymentController extends Controller
     {
         try {
             $paymentDTO = PaymentRequestDTO::fromRequest($request->all());
-            $paymentResponseDTO = $this->paymentService->process($paymentDTO);
-            return ApiResponse::success('Payment processed successfully', $paymentResponseDTO->toArray());
+            $paymentResponseDTO = $this->paymentService->process($paymentDTO)->toArray();
+            return ApiResponse::success($paymentResponseDTO['status']=='paid' ? 'Payment processed successfully': 'Payment not processed', $paymentResponseDTO);
         } catch (\Exception $e) {
             return ApiResponse::error('Failed to process payment.', 500, $e->getMessage());
         }

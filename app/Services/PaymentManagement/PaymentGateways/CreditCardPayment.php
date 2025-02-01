@@ -8,7 +8,7 @@ use App\Contracts\PaymentManagement\PaymentGatewayInterface;
 
 class CreditCardPayment implements PaymentGatewayInterface
 {
-    public function processPayment(): PaymentResponseDTO
+    public function processPayment($amount): PaymentResponseDTO
     {
         return new PaymentResponseDTO([
             'payment_id' => uniqid('credit_card', true),

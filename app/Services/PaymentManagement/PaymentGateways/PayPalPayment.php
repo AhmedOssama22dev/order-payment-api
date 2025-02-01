@@ -25,7 +25,7 @@ class PayPalPayment implements PaymentGatewayInterface
         $this->paymentUrl = $paypalConfig['payment_url'];
 
     }
-    public function processPayment(): PaymentResponseDTO
+    public function processPayment($amount): PaymentResponseDTO
     {
         // dummy api call
         // post request to paypal api
@@ -35,6 +35,9 @@ class PayPalPayment implements PaymentGatewayInterface
         //         'Content-Type' => 'application/json',
         //         'API-Key' => $this->apiKey,
         //         'API-Secret' => $this->apiSecret,
+        //     ],
+        //     'json' => [
+        //         'amount' => $amount,
         //     ],
         // ]);
 
@@ -68,7 +71,7 @@ class PayPalPayment implements PaymentGatewayInterface
 
         return $response->data['access_token'] ?? '';
     }
-    
+
     protected function mapPaymentStatus($status)
     {
         switch ($status) {

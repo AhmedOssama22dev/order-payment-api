@@ -24,7 +24,7 @@ class {{gatewayName}}Payment implements PaymentGatewayInterface
         $this->paymentUrl = $config['payment_url'];
     }
 
-    public function processPayment(): PaymentResponseDTO
+    public function processPayment($amount): PaymentResponseDTO
     {
         // $response = API call to the payment gateway
         // post request to paypal api

@@ -37,9 +37,15 @@ class MakePaymentGateway extends Command
                 'is_active' => true,
             ]);
             $this->info("Payment method {$name} added to the database.");
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             $this->info("Payment method {$name} cannot be added to the database.");
+        }
+
+        try {
+            $this->updatePaymentGatewayEnum($name);
+            $this->info("Payment gateway {$name} added to PaymentGatewayEnum.php.");
+        } catch (\Exception $e) {
+            $this->error("Failed to update PaymentGatewayEnum.php.");
         }
 
         $this->info("Payment gateway {$name}Payment.php created successfully.");
@@ -68,9 +74,9 @@ class MakePaymentGateway extends Command
 
         $newConfigEntry = <<<PHP
     ,'$lowerCaseGatewayName' => [
-        'client_id' => env(strtoupper('{$upperCaseGatewayName}_CLIENT_ID')),
-        'client_secret' => env(strtoupper('{$upperCaseGatewayName}_CLIENT_SECRET')),
-        'payment_url' => env(strtoupper('{$upperCaseGatewayName}_PAYMENT_URL')),
+        'client_id' => env(strtoupper('{$upperCaseGatewayName}_CLIENT_ID'),''),
+        'client_secret' => env(strtoupper('{$upperCaseGatewayName}_CLIENT_SECRET'),''),
+        'payment_url' => env(strtoupper('{$upperCaseGatewayName}_PAYMENT_URL'),''),
     ],
 PHP;
 
@@ -81,4 +87,34 @@ PHP;
             file_put_contents($configPath, $updatedConfig);
         }
     }
+
+    private function updatePaymentGatewayEnum(string $gatewayName)
+    {
+        $enumPath = app_path('Enums/PaymentGatewayEnum.php');
+
+        if (!file_exists($enumPath)) {
+            $this->error("Enum file PaymentGatewayEnum.php does not exist.");
+            return;
+        }
+
+        $enumContent = file_get_contents($enumPath);
+
+        $enumCase = "    case " . strtoupper($gatewayName) . " = '" . strtolower($gatewayName) . "';";
+
+        if (strpos($enumContent, $enumCase) !== false) {
+            $this->error("Payment gateway enum for {$gatewayName} already exists.");
+            return;
+        }
+
+        // Insert the new case before the first function (getClass)
+        $enumContent = preg_replace('/(enum PaymentGatewayEnum: string\s*\{)/', "$1\n$enumCase", $enumContent);
+
+        $newMapping = "            self::" . strtoupper($gatewayName) . " => \\App\\Services\\PaymentManagement\\PaymentGateways\\{$gatewayName}Payment::class,";
+
+        $enumContent = preg_replace('/(return match\s*\(\$this\) \{)/', "$1\n$newMapping", $enumContent);
+
+        // Save the modified enum file
+        file_put_contents($enumPath, $enumContent);
+    }
+
 }

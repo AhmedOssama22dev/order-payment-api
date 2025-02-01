@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Services\PaymentManagement\PaymentService;
+use App\Services\PaymentManagement\PaymentGatewayFactory;
 use App\Contracts\OrderManagement\OrderRepositoryInterface;
 use App\Contracts\PaymentManagement\PaymentRepositoryInterface;
 
@@ -25,7 +26,11 @@ class AppServiceProvider extends ServiceProvider
 
         // PaymentService binding
         $this->app->singleton(PaymentService::class, function ($app) {
-            return new PaymentService($app->make(PaymentRepositoryInterface::class), $app->make(OrderRepositoryInterface::class));
+            return new PaymentService(
+                $app->make(PaymentRepositoryInterface::class),
+                $app->make(OrderRepositoryInterface::class),
+                $app->make(PaymentGatewayFactory::class)
+            );
         });
     }
 

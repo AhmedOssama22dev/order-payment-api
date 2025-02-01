@@ -7,6 +7,6 @@ use App\DTOs\PaymentManagement\PaymentResponseDTO;
 
 interface PaymentGatewayInterface
 {
-    public function processPayment(): PaymentResponseDTO;
+    public function processPayment($amount): PaymentResponseDTO;
     
 }
