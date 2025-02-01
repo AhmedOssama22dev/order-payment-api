@@ -1,9 +1,13 @@
 # Extendable Order and Payment Management API
 
 ## Setup Instructions
+## Prerequisites
+
+
+
 
 ## How to Extend Payment Gateway?
-# Adding a New Payment Gateway
+### Adding a New Payment Gateway
 
 This guide explains how to add a new payment gateway to the system using the existing scaffolding command.
 
@@ -96,11 +100,11 @@ Pass only the `payment_method` name and `order_id` in the request body of the pr
 ---
 
 ## API Docs [POSTMAN]
-
+![Postman colelction](Documents/Order%20and%20Payment%20Management%20API.postman_collection.json)
 ## System Design Elements
 
 ### ERD  
-![ERD](Documents/order-payment-erd.drawio.svg)  
+[ERD](Documents/order-payment-erd.drawio.svg)  
 
 ### Architecture Diagram
 ![Architecture](Documents/order-payment-arch.drawio.svg)
