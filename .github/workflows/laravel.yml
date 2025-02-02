@@ -37,6 +37,8 @@ jobs:
 
     - name: Generate application key
       run: php artisan key:generate
+    - name: Generate JWT secret
+      run: php artisan jwt:secret
 
     - name: Check if test directory exists
       run: ls -R tests || echo "Test directory missing"
