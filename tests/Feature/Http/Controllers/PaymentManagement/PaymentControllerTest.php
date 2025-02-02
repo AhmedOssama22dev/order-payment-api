@@ -2,22 +2,24 @@
 
 namespace Tests\Feature;
 
-use App\Models\Order;
-use App\Models\User;
 use Tests\TestCase;
-use App\Services\PaymentManagement\PaymentService;
+use App\Models\User;
+use App\Models\Order;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PaymentControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testFetchPaymentsWithFilters()
+    public function testItFetchesPaymentsWithFilters()
     {
         $user = User::factory()->create();
-        $order = Order::factory()->create(['user_id' => $user->id]);
+        Order::factory()->create(['user_id' => $user->id]);
 
-        $response = $this->actingAs($user)->getJson(route('payments.index', ['user_id' => $user->id]));
+        $token = JWTAuth::fromUser(User::factory()->create());
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->getJson(route('payments.index', ['user_id' => $user->id]));
 
         $response->assertStatus(200)
             ->assertJson([
@@ -26,10 +28,10 @@ class PaymentControllerTest extends TestCase
             ]);
     }
 
-
-    public function testHandlesEmptyPayments()
+    public function testItHandlesEmptyPayments()
     {
-        $response = $this->actingAs(User::factory()->create())->getJson(route('payments.index'));
+        $token = JWTAuth::fromUser(User::factory()->create());
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->getJson(route('payments.index'));
 
         $response->assertStatus(200)
             ->assertJson([
@@ -39,20 +41,18 @@ class PaymentControllerTest extends TestCase
             ]);
     }
 
-
-    public function testProcessPaymentSuccessfully()
+    public function testItProcessesPaymentSuccessfully()
     {
         $user = User::factory()->create();
-        $order = Order::factory()->create(['user_id' => $user->id]);
-        $order->status = 'confirmed';
-        $order->save();
+        $order = Order::factory()->create(['user_id' => $user->id, 'status' => 'confirmed']);
 
         $paymentData = [
             'order_id' => $order->id,
-            'payment_method' => 'paypal', // TODO: make this more generic to be flexible with any gateway changes
+            'payment_method' => 'paypal',
         ];
 
-        $response = $this->actingAs($user)->postJson(route('payments.process'), $paymentData);
+        $token = JWTAuth::fromUser(User::factory()->create());
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->postJson(route('payments.process'), $paymentData);
 
         $response->assertStatus(200)
             ->assertJson([
@@ -61,19 +61,18 @@ class PaymentControllerTest extends TestCase
             ]);
     }
 
-    public function testPayNonConfirmedOrder()
+    public function testItFailsToProcessPaymentForNonConfirmedOrder()
     {
         $user = User::factory()->create();
-        $order = Order::factory()->create(['user_id' => $user->id]);
-        $order->status = 'pending';
-        $order->save();
+        $order = Order::factory()->create(['user_id' => $user->id, 'status' => 'pending']);
 
         $paymentData = [
             'order_id' => $order->id,
-            'payment_method' => 'paypal', // TODO: make this more generic to be flexible with any gateway changes
+            'payment_method' => 'paypal',
         ];
 
-        $response = $this->actingAs($user)->postJson(route('payments.process'), $paymentData);
+        $token = JWTAuth::fromUser(User::factory()->create());
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->postJson(route('payments.process'), $paymentData);
 
         $response->assertStatus(500)
             ->assertJson([
@@ -82,7 +81,7 @@ class PaymentControllerTest extends TestCase
             ]);
     }
 
-    public function testHandlesValidationErrorWhenProcessingPayment()
+    public function testItHandlesValidationErrorWhenProcessingPayment()
     {
         $invalidPaymentData = [
             'order_id' => null,
@@ -90,18 +89,18 @@ class PaymentControllerTest extends TestCase
             'payment_method' => 'invalid_method',
         ];
 
-        $response = $this->actingAs(User::factory()->create())->postJson(route('payments.process'), $invalidPaymentData);
+        $token = JWTAuth::fromUser(User::factory()->create());
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->postJson(route('payments.process'), $invalidPaymentData);
 
         $response->assertStatus(422)
             ->assertJson([
                 'errors' => [
-                    'order_id' => ['The order ID is required.']
-                ]
+                    'order_id' => ['The order ID is required.'],
+                ],
             ]);
     }
 
-
-    public function testReturnsPaymentNotProcessedWhenPaymentFails()
+    public function testItReturnsPaymentNotProcessedWhenPaymentFails()
     {
         $user = User::factory()->create();
         $order = Order::factory()->create(['user_id' => $user->id]);
@@ -111,7 +110,8 @@ class PaymentControllerTest extends TestCase
             'payment_method' => 'invalid_method', // Invalid payment method
         ];
 
-        $response = $this->actingAs($user)->postJson(route('payments.process'), $paymentData);
+        $token = JWTAuth::fromUser(User::factory()->create());
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->postJson(route('payments.process'), $paymentData);
 
         $response->assertStatus(500)
             ->assertJson([

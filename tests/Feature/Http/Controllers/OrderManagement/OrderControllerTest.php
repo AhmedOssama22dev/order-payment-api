@@ -2,10 +2,11 @@
 
 namespace Tests\Feature\Http\Controllers\OrderManagement;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\Order;
-use App\Models\User;
 use Tests\TestCase;
+use App\Models\User;
+use App\Models\Order;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class OrderControllerTest extends TestCase
 {
@@ -16,7 +17,10 @@ class OrderControllerTest extends TestCase
         $user = User::factory()->create();
         $orders = Order::factory()->count(5)->create();
 
-        $response = $this->actingAs($user)->getJson(route('orders.index', ['user_id' => $user->id]));
+        $token = JWTAuth::fromUser($user);
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->getJson(route('orders.index', ['user_id' => $user->id]));
 
         $response->assertStatus(200)
             ->assertJson([
@@ -29,7 +33,13 @@ class OrderControllerTest extends TestCase
 
     public function testItHandlesEmptyListWhenFetchingOrders()
     {
-        $response = $this->actingAs(User::factory()->create())->getJson(route('orders.index'));
+        $user = User::factory()->create();
+
+        // Generate JWT token
+        $token = JWTAuth::fromUser($user);
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->getJson(route('orders.index'));
 
         $response->assertStatus(200)
             ->assertJson([
@@ -50,7 +60,11 @@ class OrderControllerTest extends TestCase
             ]
         ];
 
-        $response = $this->actingAs($user)->postJson(route('orders.store'), $productData);
+        // Generate JWT token
+        $token = JWTAuth::fromUser($user);
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->postJson(route('orders.store'), $productData);
 
         $response->assertStatus(201)
             ->assertJson([
@@ -58,7 +72,6 @@ class OrderControllerTest extends TestCase
                 'message' => 'Order created successfully!',
             ]);
     }
-
 
     public function testItValidatesOrderCreationData()
     {
@@ -68,7 +81,11 @@ class OrderControllerTest extends TestCase
             ]
         ];
 
-        $response = $this->actingAs(User::factory()->create())->postJson(route('orders.store'), $invalidData);
+        // Generate JWT token
+        $token = JWTAuth::fromUser(User::factory()->create());
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->postJson(route('orders.store'), $invalidData);
 
         $response->assertStatus(422)
             ->assertJson([
@@ -77,13 +94,16 @@ class OrderControllerTest extends TestCase
             ]);
     }
 
-
     public function testItFetchesOrderById()
     {
         $user = User::factory()->create();
         $order = Order::factory()->create();
 
-        $response = $this->actingAs($user)->getJson(route('orders.show', $order->id));
+        // Generate JWT token
+        $token = JWTAuth::fromUser($user);
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->getJson(route('orders.show', $order->id));
 
         $response->assertStatus(200)
             ->assertJson([
@@ -92,10 +112,12 @@ class OrderControllerTest extends TestCase
             ]);
     }
 
-
     public function testItReturnsErrorWhenOrderNotFound()
     {
-        $response = $this->actingAs(User::factory()->create())->getJson(route('orders.show', 'non-existent-id'));
+        $token = JWTAuth::fromUser(User::factory()->create());
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->getJson(route('orders.show', 'non-existent-id'));
 
         $response->assertStatus(404)
             ->assertJson([
@@ -103,7 +125,6 @@ class OrderControllerTest extends TestCase
                 'message' => 'Order not found.',
             ]);
     }
-
 
     public function testItUpdatesOrderSuccessfully()
     {
@@ -114,7 +135,11 @@ class OrderControllerTest extends TestCase
             ]
         ];
 
-        $response = $this->actingAs($order->user)->putJson(route('orders.update', $order->id), $updatedData);
+        // Generate JWT token
+        $token = JWTAuth::fromUser($order->user);
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->putJson(route('orders.update', $order->id), $updatedData);
 
         $response->assertStatus(200)
             ->assertJson([
@@ -123,10 +148,12 @@ class OrderControllerTest extends TestCase
             ]);
     }
 
-
     public function testItHandlesErrorWhenUpdatingOrder()
     {
-        $response = $this->actingAs(User::factory()->create())->putJson(route('orders.update', 'non-existent-id'), []);
+        $token = JWTAuth::fromUser(User::factory()->create());
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->putJson(route('orders.update', 'non-existent-id'), []);
 
         $response->assertStatus(500)
             ->assertJson([
@@ -135,20 +162,25 @@ class OrderControllerTest extends TestCase
             ]);
     }
 
-
     public function testItDeletesOrderSuccessfully()
     {
         $order = Order::factory()->create();
 
-        $response = $this->actingAs($order->user)->deleteJson(route('orders.destroy', $order->id));
+        // Generate JWT token
+        $token = JWTAuth::fromUser($order->user);
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->deleteJson(route('orders.destroy', $order->id));
 
         $response->assertStatus(204);
     }
 
-
     public function testItHandlesErrorWhenDeletingOrder()
     {
-        $response = $this->actingAs(User::factory()->create())->deleteJson(route('orders.destroy', 'non-existent-id'));
+        $token = JWTAuth::fromUser(User::factory()->create());
+
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
+            ->deleteJson(route('orders.destroy', 'non-existent-id'));
 
         $response->assertStatus(500)
             ->assertJson([

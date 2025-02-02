@@ -2,9 +2,10 @@
 
 namespace Tests\Feature\routes;
 
-use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\User;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AuthenticationApiTest extends TestCase
 {
@@ -36,15 +37,16 @@ class AuthenticationApiTest extends TestCase
         $response->assertStatus(200);
         $response->assertJsonStructure(['token']);
     }
-
     public function testAuthUserCanLogout()
     {
         $user = User::factory()->create();
-        $token = $user->createToken('TestToken')->plainTextToken;
+
+        $token = JWTAuth::fromUser($user);
 
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])
             ->postJson(route('logout'));
 
         $response->assertStatus(200);
     }
+
 }
