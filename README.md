@@ -69,7 +69,11 @@ Follow these instructions to get the project up and running.
    ```bash
    php artisan key:generate
    ```
-
+4. Generate JWT key
+   
+   ```bash
+   php artisan jwt:secret
+   ```
 ---
 
 ## Step 3: Set Up the Database

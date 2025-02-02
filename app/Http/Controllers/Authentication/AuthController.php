@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Authentication;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\Authentication\RegisterUserRequest;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
@@ -29,7 +29,7 @@ class AuthController extends Controller
             ], 409);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = JWTAuth::fromUser($user);
 
         return response()->json(['token' => $token, 'user' => $user], 201);
     }
@@ -47,32 +47,30 @@ class AuthController extends Controller
             ], 401);
         }
 
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'message' => 'Invalid login details'
             ], 401);
         }
-        $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
-        }
-
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = JWTAuth::fromUser($user);
 
         return response()->json(['token' => $token, 'user' => $user]);
     }
 
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
+        JWTAuth::invalidate(JWTAuth::getToken());
+
         return response()->json(['message' => 'Logged out']);
     }
 
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        $user = JWTAuth::parseToken()->authenticate();
+
+        return response()->json($user);
     }
 }

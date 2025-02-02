@@ -83,7 +83,7 @@
 							"body": "{\n    \"message\": \"Invalid login details\"\n}"
 						},
 						{
-							"name": "Successful Login",
+							"name": "Success Login",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
@@ -108,11 +108,11 @@
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 30 Jan 2025 14:01:14 GMT"
+									"value": "Sun, 02 Feb 2025 13:11:52 GMT"
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 30 Jan 2025 14:01:14 GMT"
+									"value": "Sun, 02 Feb 2025 13:11:52 GMT"
 								},
 								{
 									"key": "Connection",
@@ -136,7 +136,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"token\": \"2|6jaagmo78tqiLuCAtneHooESihSBBZZyUtJGsVO58046f91e\",\n    \"user\": {\n        \"id\": 1,\n        \"name\": \"Ahmed\",\n        \"email\": \"ahmedossama@gmail.com\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2025-01-30T13:59:30.000000Z\",\n        \"updated_at\": \"2025-01-30T13:59:30.000000Z\"\n    }\n}"
+							"body": "{\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3YxL2xvZ2luIiwiaWF0IjoxNzM4NTAxOTEyLCJleHAiOjE3Mzg1MDU1MTIsIm5iZiI6MTczODUwMTkxMiwianRpIjoiQnpGVG1wVWR5N2xnVldSRSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.JCQrfGdtZkFFmHtjRgZiCwjzcYTgTxg37fV2Bmfcim4\",\n    \"user\": {\n        \"id\": 1,\n        \"name\": \"Ahmed\",\n        \"email\": \"ahmedossama@gmail.com\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2025-01-30T15:47:09.000000Z\",\n        \"updated_at\": \"2025-01-30T15:47:09.000000Z\"\n    }\n}"
 						}
 					]
 				},
@@ -147,7 +147,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Ahmed\",\r\n    \"email\": \"ahmedossama@gmail.com\",\r\n    \"password\":\"12345678_\",\r\n    \"password_confirmation\":\"12345678_\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Ahmed ossama\",\r\n    \"email\": \"ahmedossama1@gmail.com\",\r\n    \"password\":\"12345678_\",\r\n    \"password_confirmation\":\"12345678_\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -157,62 +157,6 @@
 						"url": "{{BASE_URL}}/api/v1/register"
 					},
 					"response": [
-						{
-							"name": "Successful registration",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\":\"Ahmed\",\r\n    \"email\": \"ahmedossama@gmail.com\",\r\n    \"password\":\"12345678_\",\r\n    \"password_confirmation\":\"12345678_\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BASE_URL}}/api/v1/register"
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Host",
-									"value": "127.0.0.1:8000"
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 30 Jan 2025 13:59:30 GMT"
-								},
-								{
-									"key": "Date",
-									"value": "Thu, 30 Jan 2025 13:59:30 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "close"
-								},
-								{
-									"key": "X-Powered-By",
-									"value": "PHP/8.2.0"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, private"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Access-Control-Allow-Origin",
-									"value": "*"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"token\": \"1|F31OfZZKKvofe4SndxFcSejqMu4BVD6Lt3rk3idDea959e74\",\n    \"user\": {\n        \"name\": \"Ahmed\",\n        \"email\": \"ahmedossama@gmail.com\",\n        \"updated_at\": \"2025-01-30T13:59:30.000000Z\",\n        \"created_at\": \"2025-01-30T13:59:30.000000Z\",\n        \"id\": 1\n    }\n}"
-						},
 						{
 							"name": "Invalid Registeration",
 							"originalRequest": {
@@ -380,6 +324,62 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Validation failed\",\n    \"errors\": {\n        \"email\": [\n            \"This email is already registered.\"\n        ],\n        \"password\": [\n            \"The password must be at least 8 characters long.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Successful Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Ahmed ossama\",\r\n    \"email\": \"ahmedossama1@gmail.com\",\r\n    \"password\":\"12345678_\",\r\n    \"password_confirmation\":\"12345678_\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BASE_URL}}/api/v1/register"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Feb 2025 13:14:55 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 02 Feb 2025 13:14:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3YxL3JlZ2lzdGVyIiwiaWF0IjoxNzM4NTAyMDk1LCJleHAiOjE3Mzg1MDU2OTUsIm5iZiI6MTczODUwMjA5NSwianRpIjoiRHFCQldQMzk4ZmhSY2UwTiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.g5qYwX7vLqXW6hgCedX2anxKndmH0cTrWZpGkMtrPtE\",\n    \"user\": {\n        \"name\": \"Ahmed ossama\",\n        \"email\": \"ahmedossama1@gmail.com\",\n        \"updated_at\": \"2025-02-02T13:14:55.000000Z\",\n        \"created_at\": \"2025-02-02T13:14:55.000000Z\",\n        \"id\": 2\n    }\n}"
 						}
 					]
 				}
@@ -663,7 +663,13 @@
 									}
 								},
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"url": "{{BASE_URL}}/api/v1/orders/{id}"
 							},
 							"response": []
@@ -697,62 +703,6 @@
 								"url": "{{BASE_URL}}/api/v1/orders"
 							},
 							"response": [
-								{
-									"name": "Success order creation",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"user_id\":\"1\",\r\n    \"products\" : [\r\n        {\r\n            \"name\":\"Product 1\",\r\n            \"quantity\":\"1\",\r\n            \"price\": \"10.5\"\r\n        },\r\n        {\r\n            \"name\":\"Product 2\",\r\n            \"quantity\":\"3\",\r\n            \"price\": \"100\"\r\n        }\r\n    ]\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": "{{BASE_URL}}/api/v1/orders"
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Host",
-											"value": "127.0.0.1:8000"
-										},
-										{
-											"key": "Date",
-											"value": "Thu, 30 Jan 2025 15:53:18 GMT"
-										},
-										{
-											"key": "Date",
-											"value": "Thu, 30 Jan 2025 15:53:18 GMT"
-										},
-										{
-											"key": "Connection",
-											"value": "close"
-										},
-										{
-											"key": "X-Powered-By",
-											"value": "PHP/8.2.0"
-										},
-										{
-											"key": "Cache-Control",
-											"value": "no-cache, private"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										},
-										{
-											"key": "Access-Control-Allow-Origin",
-											"value": "*"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"status\": \"success\",\n    \"message\": \"Order created successfully!\",\n    \"data\": 201\n}"
-								},
 								{
 									"name": "Unauthenticated",
 									"originalRequest": {
@@ -876,6 +826,68 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"status\": \"error\",\n    \"message\": \"Failed to create order. Please try again.\",\n    \"data\": \"Product list cannot be empty.\"\n}"
+								},
+								{
+									"name": "Success order creation",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"user_id\":\"1\",\r\n    \"products\" : [\r\n        {\r\n            \"name\":\"Product 1\",\r\n            \"quantity\":\"1\",\r\n            \"price\": \"10.5\"\r\n        },\r\n        {\r\n            \"name\":\"Product 2\",\r\n            \"quantity\":\"3\",\r\n            \"price\": \"100\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BASE_URL}}/api/v1/orders"
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 01 Feb 2025 18:36:04 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 01 Feb 2025 18:36:04 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"message\": \"Order created successfully!\",\n    \"data\": null\n}"
 								}
 							]
 						},
@@ -889,7 +901,13 @@
 									}
 								},
 								"method": "PUT",
-								"header": [],
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n    \"status\":\"confirmed\"\r\n    // total_price and user_id are guarded\r\n}",
@@ -1026,8 +1044,14 @@
 									}
 								},
 								"method": "DELETE",
-								"header": [],
-								"url": "{{BASE_URL}}/api/v1/orders/{id}"
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": "{{BASE_URL}}/api/v1/orders/7"
 							},
 							"response": [
 								{
